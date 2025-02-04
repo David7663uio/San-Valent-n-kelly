@@ -10,6 +10,9 @@
             background-color: #ffeff0;
             text-align: center;
             padding: 50px;
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
         }
 
         h1 {
@@ -24,6 +27,9 @@
 
         .container {
             margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
         }
 
         #yes, #no {
@@ -78,56 +84,100 @@
             transform: translateY(0);
         }
 
-        #yes.shrink {
-            transform: scale(1.5);
-        }
-
-        /* Aseguramos que la imagen esté en el centro */
-        .image-container {
-            text-align: center;
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <h1>¡Quiero pedirte algo especial! 💖</h1>
+    <h1 id="title">¡Querida hermosa y preciosa kelly! 💖</h1>
 
-    <!-- Contenedor para la imagen -->
     <div class="image-container">
-        <img id="bear-img" src="https://media.giphy.com/media/l2QDMhZC8cF2V0kde/giphy.gif" alt="Ositos de peluche">
+        <img id="bear-img" src="https://encoded.pe/sanvalentin/mocha.gif" alt="Ositos de peluche">
     </div>
 
-    <p>¿Quieres ser mi San Valentín?</p>
+    <p id="question">¿Quieres ser mi San Valentín?</p>
 
     <div class="container">
-        <button id="yes">Sí, quiero</button>
-        <button id="no">No</button>
+        <button id="yes">Sí, quiero 😻</button>
+        <button id="no">No 🤨</button>
     </div>
 
-    <p id="message" class="message">¡Me encantas! Gracias por ser mi San Valentín 💕</p>
+    <p id="message" class="message">¡Me encantas, te adoro, me fascinas, eres la mejoooor! Gracias por ser mi San Valentín 🙈❤️</p>
 
     <script>
         let yesButton = document.getElementById("yes");
         let noButton = document.getElementById("no");
         let message = document.getElementById("message");
-        let counter = 0;
+        let question = document.getElementById("question");
+        let bearImg = document.getElementById("bear-img");
 
-        // Incrementa el contador cada vez que se pulsa el botón "No"
+        // Array de gifs para cambiar
+        const gifs = [
+            "https://encoded.pe/sanvalentin/mocha.gif",  // Gif original
+            "https://encoded.pe/sanvalentin/mocha2.gif", // Gif nuevo
+            "https://encoded.pe/sanvalentin/mocha3.gif",  // Gif 2
+            "https://i.gifer.com/6QDS.gif",  // Gif 3
+            "https://i.gifer.com/6ahY.gif",  // Gif 4
+            "https://i.gifer.com/24Lc.gif",  // Gif 5
+            "https://i.gifer.com/UUq.gif"   // Gif 6
+        ];
+
+        // Array de mensajes para cambiar
+        const messages = [
+            "¿Quieres ser mi San Valentín? 🙈",
+            "¿De verdad no quieres ser mi San Valentín? 😔",
+            "Te prometo darte mucho amor comprension y cariño. Di que si 🥹",
+            "¡No puedes decir que no! Te voy a convencer 🤧",
+            "¿Y si te traigo burritos? dirias que si 🥺",
+            "De veritas no quieres serlo 😭💔",
+            "Mis ojitos son solo para ti, aceptas ser mi san valentin? 🥺❤️"
+        ];
+
+        let currentIndex = 0; // Índice actual para los gifs y mensajes
+
+        // Función para cambiar el gif y el mensaje secuencialmente
+        function changeGifAndMessage() {
+            // Cambiar el gif secuencialmente
+            bearImg.src = gifs[currentIndex];
+
+            // Cambiar el mensaje secuencialmente
+            question.innerText = messages[currentIndex];
+
+            // Incrementar el índice y volver al inicio si se llega al final
+            currentIndex = (currentIndex + 1) % gifs.length; // Esto asegura que cuando lleguemos al final, volvamos al principio
+        }
+
+        // Función para cambiar la imagen de los ositos al aceptar
+        function changeImageOnYes() {
+            // Cambiar la imagen a una nueva al hacer clic en "Sí"
+            bearImg.src = "https://encoded.pe/sanvalentin/mocha9final.gif";
+        }
+
+        // Cuando se haga clic en "No", cambia la pregunta y el gif
         noButton.addEventListener("click", function() {
-            // Agrandar el botón de "Sí" cada vez que se presiona "No"
-            yesButton.style.transform = `scale()`;
-            counter++;
+            changeGifAndMessage();
         });
 
         // Mostrar mensaje y animación al pulsar "Sí"
         yesButton.addEventListener("click", function() {
-            // Agrandar el botón de "Sí" cuando se presiona
-            yesButton.style.transform = "scale(1.5)";
-            // Mostrar el mensaje con efecto diapositiva
+            document.getElementById("title").classList.add("hidden");
+            document.getElementById("question").classList.add("hidden");
+            document.querySelector(".container").classList.add("hidden");
+
+            // Cambiar la imagen de los ositos
+            changeImageOnYes();
+
+            // Mostrar el mensaje con el gif de ositos
             message.classList.add("show");
+
             // Desactivar ambos botones
             yesButton.style.pointerEvents = "none";
             noButton.style.pointerEvents = "none";
         });
+
+        // Inicializar el gif y el mensaje
+        changeGifAndMessage(); // Mostrar el primer gif y mensaje desde el principio
     </script>
 </body>
 </html>
