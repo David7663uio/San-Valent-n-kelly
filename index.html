@@ -1,14 +1,133 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>¿Quieres ser mi San Valentin?</title>
-    <script type="module" crossorigin src="/assets/index-igYQ2g0w.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-zKhTG_2O.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Valentín</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffeff0;
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            color: #d85c5c;
+            font-size: 40px;
+        }
+
+        p {
+            font-size: 20px;
+            color: #333;
+        }
+
+        .container {
+            margin-top: 30px;
+        }
+
+        #yes, #no {
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            border: none;
+            transition: all 0.3s ease;
+            margin: 20px;
+            display: inline-block;
+        }
+
+        #yes {
+            background-color: #ff4f58;
+            color: white;
+        }
+
+        #no {
+            background-color: #e0e0e0;
+            color: black;
+        }
+
+        #yes:hover {
+            background-color: #ff6a73;
+        }
+
+        #no:hover {
+            background-color: #c2c2c2;
+        }
+
+        #bear-img {
+            width: 300px;
+            margin-top: 30px;
+            border-radius: 15px;
+        }
+
+        .message {
+            font-size: 24px;
+            font-weight: bold;
+            color: #d85c5c;
+            display: none;
+            margin-top: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .message.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #yes.shrink {
+            transform: scale(1.5);
+        }
+
+        /* Aseguramos que la imagen esté en el centro */
+        .image-container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>¡Quiero pedirte algo especial! 💖</h1>
+
+    <!-- Contenedor para la imagen -->
+    <div class="image-container">
+        <img id="bear-img" src="https://media.giphy.com/media/l2QDMhZC8cF2V0kde/giphy.gif" alt="Ositos de peluche">
+    </div>
+
+    <p>¿Quieres ser mi San Valentín?</p>
+
+    <div class="container">
+        <button id="yes">Sí, quiero</button>
+        <button id="no">No</button>
+    </div>
+
+    <p id="message" class="message">¡Me encantas! Gracias por ser mi San Valentín 💕</p>
+
+    <script>
+        let yesButton = document.getElementById("yes");
+        let noButton = document.getElementById("no");
+        let message = document.getElementById("message");
+        let counter = 0;
+
+        // Incrementa el contador cada vez que se pulsa el botón "No"
+        noButton.addEventListener("click", function() {
+            // Agrandar el botón de "Sí" cada vez que se presiona "No"
+            yesButton.style.transform = `scale()`;
+            counter++;
+        });
+
+        // Mostrar mensaje y animación al pulsar "Sí"
+        yesButton.addEventListener("click", function() {
+            // Agrandar el botón de "Sí" cuando se presiona
+            yesButton.style.transform = "scale(1.5)";
+            // Mostrar el mensaje con efecto diapositiva
+            message.classList.add("show");
+            // Desactivar ambos botones
+            yesButton.style.pointerEvents = "none";
+            noButton.style.pointerEvents = "none";
+        });
+    </script>
+</body>
 </html>
