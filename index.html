@@ -155,6 +155,36 @@
             }
         }
 
+        /* Transición de desvanecimiento para el texto y los gifs */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Animación para el desvanecimiento cuando se oculta el texto o gif */
+        .fade-out {
+            opacity: 1;
+            animation: fadeOut 0.5s forwards;
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -219,13 +249,42 @@
         let currentIndex = 0;
 
         function changeGifAndMessage() {
-            bearImg.src = gifs[currentIndex];
-            question.innerText = messages[currentIndex];
-            currentIndex = (currentIndex + 1) % gifs.length;
+            // Aplicar el efecto de desvanecimiento al mensaje y gif antes de cambiar
+            bearImg.classList.add("fade-out");
+            question.classList.add("fade-out");
+
+            // Esperar a que se complete la animación de desvanecimiento antes de cambiar el contenido
+            setTimeout(() => {
+                bearImg.src = gifs[currentIndex];
+                question.innerText = messages[currentIndex];
+
+                // Remover las clases de fade-out y añadir fade-in
+                bearImg.classList.remove("fade-out");
+                question.classList.remove("fade-out");
+                bearImg.classList.add("fade-in");
+                question.classList.add("fade-in");
+
+                currentIndex = (currentIndex + 1) % gifs.length;
+            }, 500);  // El tiempo de espera debe coincidir con la duración de la animación de fade-out
         }
 
         function changeImageOnYes() {
-            bearImg.src = "https://encoded.pe/sanvalentin/mocha9final.gif";
+            // Desvanecer el gif actual y el mensaje
+            bearImg.classList.add("fade-out");
+            message.classList.add("fade-out");
+            question.classList.add("fade-out");
+
+            setTimeout(() => {
+                bearImg.src = "https://encoded.pe/sanvalentin/mocha9final.gif";
+                bearImg.classList.remove("fade-out");
+                bearImg.classList.add("fade-in");
+
+                // Mostrar el mensaje final con el gif
+                message.classList.remove("fade-out");
+                message.classList.add("fade-in");
+                message.classList.add("show");
+
+            }, 500);
         }
 
         function showRainOfHearts() {
@@ -233,27 +292,39 @@
                 let rainHeart = document.createElement("div");
                 rainHeart.classList.add("rain-heart");
                 rainHeart.innerText = "💖";
-                rainHeart.style.left = `%`; // Ubicación aleatoria horizontal
-                rainHeart.style.animationDuration = `s`; // Duración aleatoria
+                rainHeart.style.left = `%`;  // Ubicación aleatoria horizontal
+                rainHeart.style.animationDuration = `s`;  // Duración aleatoria
                 document.body.appendChild(rainHeart);
+
+                // Después de que termine la animación de lluvia de corazones, eliminar el corazón
+                setTimeout(() => {
+                    rainHeart.remove();
+                }, 5000); // Duración de la animación de lluvia
             }
         }
 
-        // Inicia la música cuando se hace clic en el botón "No"
+        // Cuando se hace clic en "No"
         noButton.addEventListener("click", function() {
             backgroundMusic.play();
             changeGifAndMessage();
         });
 
+        // Cuando se hace clic en "Sí"
         yesButton.addEventListener("click", function() {
-            document.getElementById("title").classList.add("hidden");
-            document.getElementById("question").classList.add("hidden");
-            document.querySelector(".container").classList.add("hidden");
-            changeImageOnYes();
-            message.classList.add("show");
-            yesButton.style.pointerEvents = "none";
-            noButton.style.pointerEvents = "none";
-            showRainOfHearts();
+            document.getElementById("title").classList.add("fade-out");
+            document.getElementById("question").classList.add("fade-out");
+            document.querySelector(".container").classList.add("fade-out");
+
+            setTimeout(() => {
+                document.getElementById("title").classList.add("hidden");
+                document.getElementById("question").classList.add("hidden");
+                document.querySelector(".container").classList.add("hidden");
+                changeImageOnYes();
+                yesButton.style.pointerEvents = "none";
+                noButton.style.pointerEvents = "none";
+                showRainOfHearts();
+                backgroundMusic.play();  // Reproducir música al hacer clic en "Sí"
+            }, 500); // Esperar que la animación de fade-out termine
         });
 
         changeGifAndMessage();
