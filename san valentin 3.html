@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Valentín</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffc0cb, #ffb6c1, #dda0dd, #add8e6); /* Gradiente con los colores pedidos */
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
+            text-align: center;
+            padding: 50px;
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 25% 50%; }
+            50% { background-position: 50% 50%; }
+            75% { background-position: 75% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 40px;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 20px;
+            color: #333;
+            font-weight: bold;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        #yes, #no {
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            border: none;
+            transition: all 0.3s ease;
+            margin: 20px;
+            display: inline-block;
+        }
+
+        #yes {
+            background-color: #ff4f58;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #no {
+            background-color: #e0e0e0;
+            color: black;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #yes:hover {
+            background-color: #ff6a73;
+        }
+
+        #no:hover {
+            background-color: #c2c2c2;
+        }
+
+        #bear-img {
+            width: 300px;
+            margin-top: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .message {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff; 
+            display: none;
+            margin-top: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .message.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Corazones flotantes ajustados y esparcidos en la primera diapositiva */
+        .heart {
+            position: absolute;
+            font-size: 25px;
+            color: #ff6a73;
+            opacity: 0.7;
+            animation: floatHearts 10s linear infinite;
+        }
+
+        @keyframes floatHearts {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(-200px) rotate(180deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+                opacity: 0.8;
+            }
+        }
+
+        /* Lluvia de corazones en la segunda diapositiva */
+        .rain-heart {
+            position: absolute;
+            font-size: 30px;
+            color: #ff4f58;
+            opacity: 0.7;
+            animation: rainHearts 5s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes rainHearts {
+            0% {
+                transform: translateY(-50px);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0.3;
+            }
+        }
+
+        /* Transición de desvanecimiento para el texto y los gifs */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Animación para el desvanecimiento cuando se oculta el texto o gif */
+        .fade-out {
+            opacity: 1;
+            animation: fadeOut 0.5s forwards;
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <h1 id="title">¡Querida hermosa y preciosa Kelly! 💖</h1>
+
+    <div class="image-container">
+        <img id="bear-img" src="https://encoded.pe/sanvalentin/mocha.gif" alt="Ositos de peluche">
+    </div>
+
+    <p id="question">¿Quieres ser mi San Valentín?</p>
+
+    <!-- Corazones flotantes dispersos solo en la primera diapositiva -->
+    <div class="heart" style="top: 10%; left: 15%;">❤️</div>
+    <div class="heart" style="top: 20%; left: 40%;">💖</div>
+    <div class="heart" style="top: 50%; left: 70%;">💘</div>
+    <div class="heart" style="top: 80%; left: 25%;">💝</div>
+    <div class="heart" style="top: 30%; left: 55%;">💕</div>
+    <div class="heart" style="top: 60%; left: 10%;">💓</div>
+    <div class="heart" style="top: 40%; left: 80%;">💞</div>
+    <div class="heart" style="top: 70%; left: 50%;">💗</div>
+    <div class="heart" style="top: 90%; left: 60%;">💌</div>
+
+    <div class="container">
+        <button id="yes">Sí, quiero 😻</button>
+        <button id="no">No 🤨</button>
+    </div>
+
+    <p id="message" class="message">¡Me encantas, te adoro, me fascinas, eres la mejoooor! Gracias por ser mi San Valentín 🙈❤️</p>
+
+    <!-- Agregar el reproductor de audio aquí -->
+    <audio id="background-music" src="https://www.dropbox.com/scl/fi/expkeaqi78x0l1q20kq6d/Lady-Gaga-Bruno-Mars-Die-With-A-Smile-Sub.-Espa-ol-Lyrics-video-oficial.mp3?rlkey=73ear0e48fw7cqb9nylr03kcr&st=127tofpy&dl=0&raw=1" preload="auto"></audio>
+
+    <script>
+        let yesButton = document.getElementById("yes");
+        let noButton = document.getElementById("no");
+        let message = document.getElementById("message");
+        let question = document.getElementById("question");
+        let bearImg = document.getElementById("bear-img");
+        let backgroundMusic = document.getElementById("background-music");
+
+        // Array de gifs para cambiar
+        const gifs = [
+            "https://encoded.pe/sanvalentin/mocha.gif",  
+            "https://encoded.pe/sanvalentin/mocha2.gif", 
+            "https://encoded.pe/sanvalentin/mocha3.gif",  
+            "https://i.gifer.com/6QDS.gif",  
+            "https://i.gifer.com/6ahY.gif",  
+            "https://i.gifer.com/24Lc.gif",  
+            "https://i.gifer.com/UUq.gif"   
+        ];
+
+        const messages = [
+            "¿Quieres ser mi San Valentín? 🙈",
+            "¿De verdad no quieres ser mi San Valentín? 😔",
+            "Te prometo darte mucho amor, comprensión y cariño. Di que sí 🥹",
+            "¡No puedes decir que no! Te voy a convencer 🤧",
+            "¿Y si te traigo burritos? Dirías que sí 🥺",
+            "De veritas no quieres serlo 😭💔",
+            "Mis ojitos son solo para ti, ¿aceptas ser mi San Valentín? 🥺❤️"
+        ];
+
+        let currentIndex = 0;
+
+        function changeGifAndMessage() {
+            // Aplicar el efecto de desvanecimiento al mensaje y gif antes de cambiar
+            bearImg.classList.add("fade-out");
+            question.classList.add("fade-out");
+
+            // Esperar a que se complete la animación de desvanecimiento antes de cambiar el contenido
+            setTimeout(() => {
+                bearImg.src = gifs[currentIndex];
+                question.innerText = messages[currentIndex];
+
+                // Remover las clases de fade-out y añadir fade-in
+                bearImg.classList.remove("fade-out");
+                question.classList.remove("fade-out");
+                bearImg.classList.add("fade-in");
+                question.classList.add("fade-in");
+
+                currentIndex = (currentIndex + 1) % gifs.length;
+            }, 500);  // El tiempo de espera debe coincidir con la duración de la animación de fade-out
+        }
+
+        function changeImageOnYes() {
+            // Desvanecer el gif actual y el mensaje
+            bearImg.classList.add("fade-out");
+            message.classList.add("fade-out");
+            question.classList.add("fade-out");
+
+            setTimeout(() => {
+                bearImg.src = "https://encoded.pe/sanvalentin/mocha9final.gif";
+                bearImg.classList.remove("fade-out");
+                bearImg.classList.add("fade-in");
+
+                // Mostrar el mensaje final con el gif
+                message.classList.remove("fade-out");
+                message.classList.add("fade-in");
+                message.classList.add("show");
+
+            }, 500);
+        }
+
+        function showRainOfHearts() {
+            for (let i = 0; i < 10; i++) {
+                let rainHeart = document.createElement("div");
+                rainHeart.classList.add("rain-heart");
+                rainHeart.innerText = "💖";
+                rainHeart.style.left = `%`;  // Ubicación aleatoria horizontal
+                rainHeart.style.animationDuration = `s`;  // Duración aleatoria
+                document.body.appendChild(rainHeart);
+
+                // Después de que termine la animación de lluvia de corazones, eliminar el corazón
+                setTimeout(() => {
+                    rainHeart.remove();
+                }, 5000); // Duración de la animación de lluvia
+            }
+        }
+
+        // Cuando se hace clic en "No"
+        noButton.addEventListener("click", function() {
+            backgroundMusic.play();
+            changeGifAndMessage();
+        });
+
+        // Cuando se hace clic en "Sí"
+        yesButton.addEventListener("click", function() {
+            document.getElementById("title").classList.add("fade-out");
+            document.getElementById("question").classList.add("fade-out");
+            document.querySelector(".container").classList.add("fade-out");
+
+            setTimeout(() => {
+                document.getElementById("title").classList.add("hidden");
+                document.getElementById("question").classList.add("hidden");
+                document.querySelector(".container").classList.add("hidden");
+                changeImageOnYes();
+                yesButton.style.pointerEvents = "none";
+                noButton.style.pointerEvents = "none";
+                showRainOfHearts();
+                backgroundMusic.play();  // Reproducir música al hacer clic en "Sí"
+            }, 500); // Esperar que la animación de fade-out termine
+        });
+
+        changeGifAndMessage();
+    </script>
+</body>
+</html>
+
