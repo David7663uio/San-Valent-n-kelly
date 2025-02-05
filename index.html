@@ -7,26 +7,17 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, 
-                #ff77ff, /* Rosa neón */
-                #ff64b7, /* Rosa más oscuro */
-                #ffa7e0, /* Rosa pastel */
-                #f0d4ff, /* Lavanda */
-                #c2e9ff, /* Azul pastel */
-                #c1fffc, /* Turquesa */
-                #ff9ff3, /* Rosa fuerte */
-                #ffd700 /* Amarillo brillante */
-            );
-            background-size: 600% 600%; /* Aumenta el tamaño para más desplazamiento */
-            animation: gradientAnimation 15s ease infinite; /* Aumentamos la animación para que el gradiente se mueva más lentamente */
+            background: linear-gradient(135deg, #ffc0cb, #ffb6c1, #dda0dd, #add8e6); /* Gradiente con los colores pedidos */
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
             text-align: center;
-            padding: 20px; /* Reducimos el padding superior */
+            padding: 50px;
             position: relative;
             height: 100vh;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Cambiar para alineación hacia arriba */
+            justify-content: center;
             align-items: center;
         }
 
@@ -44,7 +35,6 @@
             font-family: 'Comic Sans MS', cursive, sans-serif;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
             margin-bottom: 20px;
-            margin-top: 50px; /* Ajustamos la parte superior para mover más hacia arriba */
         }
 
         p {
@@ -55,7 +45,7 @@
         }
 
         .container {
-            margin-top: 20px; /* Reducimos el margen superior */
+            margin-top: 30px;
             display: flex;
             justify-content: center;
             gap: 30px;
@@ -68,7 +58,7 @@
             border-radius: 8px;
             border: none;
             transition: all 0.3s ease;
-            margin: 10px;
+            margin: 20px;
             display: inline-block;
         }
 
@@ -94,7 +84,7 @@
 
         #bear-img {
             width: 300px;
-            margin-top: 20px; /* Ajustamos el margen superior */
+            margin-top: 30px;
             border-radius: 15px;
             box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
         }
@@ -194,12 +184,16 @@
 
     <p id="message" class="message">¡Me encantas, te adoro, me fascinas, eres la mejoooor! Gracias por ser mi San Valentín 🙈❤️</p>
 
+    <!-- Agregar el reproductor de audio aquí -->
+    <audio id="background-music" src="https://www.dropbox.com/scl/fi/expkeaqi78x0l1q20kq6d/Lady-Gaga-Bruno-Mars-Die-With-A-Smile-Sub.-Espa-ol-Lyrics-video-oficial.mp3?rlkey=73ear0e48fw7cqb9nylr03kcr&st=127tofpy&dl=0&raw=1" preload="auto"></audio>
+
     <script>
         let yesButton = document.getElementById("yes");
         let noButton = document.getElementById("no");
         let message = document.getElementById("message");
         let question = document.getElementById("question");
         let bearImg = document.getElementById("bear-img");
+        let backgroundMusic = document.getElementById("background-music");
 
         // Array de gifs para cambiar
         const gifs = [
@@ -245,7 +239,9 @@
             }
         }
 
+        // Inicia la música cuando se hace clic en el botón "No"
         noButton.addEventListener("click", function() {
+            backgroundMusic.play();
             changeGifAndMessage();
         });
 
