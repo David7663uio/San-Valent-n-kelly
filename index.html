@@ -20,13 +20,13 @@
             background-size: 600% 600%; /* Aumenta el tamaño para más desplazamiento */
             animation: gradientAnimation 15s ease infinite; /* Aumentamos la animación para que el gradiente se mueva más lentamente */
             text-align: center;
-            padding: 50px;
+            padding: 20px; /* Reducimos el padding superior */
             position: relative;
             height: 100vh;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start; /* Cambiar para alineación hacia arriba */
             align-items: center;
         }
 
@@ -44,6 +44,7 @@
             font-family: 'Comic Sans MS', cursive, sans-serif;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
             margin-bottom: 20px;
+            margin-top: 50px; /* Ajustamos la parte superior para mover más hacia arriba */
         }
 
         p {
@@ -54,7 +55,7 @@
         }
 
         .container {
-            margin-top: 30px;
+            margin-top: 20px; /* Reducimos el margen superior */
             display: flex;
             justify-content: center;
             gap: 30px;
@@ -67,7 +68,7 @@
             border-radius: 8px;
             border: none;
             transition: all 0.3s ease;
-            margin: 20px;
+            margin: 10px;
             display: inline-block;
         }
 
@@ -93,7 +94,7 @@
 
         #bear-img {
             width: 300px;
-            margin-top: 30px;
+            margin-top: 20px; /* Ajustamos el margen superior */
             border-radius: 15px;
             box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
         }
@@ -238,8 +239,8 @@
                 let rainHeart = document.createElement("div");
                 rainHeart.classList.add("rain-heart");
                 rainHeart.innerText = "💖";
-                rainHeart.style.left = `${Math.random() * 100}%`; // Ubicación aleatoria horizontal
-                rainHeart.style.animationDuration = `${Math.random() * 5 + 3}s`; // Duración aleatoria
+                rainHeart.style.left = `%`; // Ubicación aleatoria horizontal
+                rainHeart.style.animationDuration = `s`; // Duración aleatoria
                 document.body.appendChild(rainHeart);
             }
         }
