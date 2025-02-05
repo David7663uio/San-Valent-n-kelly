@@ -158,7 +158,7 @@
     </style>
 </head>
 <body>
-    <h1 id="title">¡Querida hermosa y preciosa Kelly! 💖</h1>
+    <h1 id="title">¡Querida hermosa y preciosa Melany! 💖</h1>
 
     <div class="image-container">
         <img id="bear-img" src="https://encoded.pe/sanvalentin/mocha.gif" alt="Ositos de peluche">
@@ -184,8 +184,8 @@
 
     <p id="message" class="message">¡Me encantas, te adoro, me fascinas, eres la mejoooor! Gracias por ser mi San Valentín 🙈❤️</p>
 
-    <!-- Reproductor de música en segundo plano -->
-    <audio id="background-music" src="https://www.dropbox.com/scl/fi/br6cluulcilwmu8azkecq/sad-ukulele-lofi-type-beat-ukelele-chill-new-day.mp3?rlkey=sb5t17no2omcps4tqbgmlgwgg&st=22nir9zx&raw=1" loop preload="auto" autoplay></audio>
+    <!-- Agregar el reproductor de audio aquí -->
+    <audio id="background-music" src="https://www.dropbox.com/scl/fi/expkeaqi78x0l1q20kq6d/Lady-Gaga-Bruno-Mars-Die-With-A-Smile-Sub.-Espa-ol-Lyrics-video-oficial.mp3?rlkey=73ear0e48fw7cqb9nylr03kcr&st=127tofpy&dl=0&raw=1" preload="auto"></audio>
 
     <script>
         let yesButton = document.getElementById("yes");
@@ -239,7 +239,9 @@
             }
         }
 
+        // Inicia la música cuando se hace clic en el botón "No"
         noButton.addEventListener("click", function() {
+            backgroundMusic.play();
             changeGifAndMessage();
         });
 
@@ -258,4 +260,3 @@
     </script>
 </body>
 </html>
-
